@@ -1,0 +1,35 @@
+{
+  "name": "@har4s/use-local-storage",
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "typings": "lib/index",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "hooks",
+    "local storage",
+    "localstorage",
+    "react hooks local storage",
+    "uselocalstorage"
+  ],
+  "author": "Hares Khalvati",
+  "homepage": "https://github.com/har4s/use-local-storage#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/har4s/use-local-storage.git"
+  },
+  "scripts": {
+    "prepare": "tsc",
+    "watch": "tsc -w"
+  },
+  "dependencies": {
+    "react": "^17.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.33",
+    "typescript": "^4.4.4"
+  },
+  "files": [
+    "lib/"
+  ]
+}

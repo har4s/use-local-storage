@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": "src",
+    "outDir": "lib",
+    "target": "esnext",
+    "lib": ["esnext", "dom"],
+    "module": "commonjs",
+    "sourceMap": true,
+    "declaration": true,
+    "jsx": "react-jsx"
+  },
+  "include": ["src"]
+}
