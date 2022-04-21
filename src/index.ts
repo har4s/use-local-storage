@@ -1,5 +1,5 @@
 import useLocalStorage from "./useLocalStorage";
-
-export { default } from "./useLocalStorage";
+import useSessionStorage from "./useSessionStorage";
 export type { UseLocalStorage } from "./useLocalStorage";
-export { useLocalStorage };
+export type { UseSessionStorage } from "./useSessionStorage";
+export { useLocalStorage, useSessionStorage };
