@@ -1,6 +1,6 @@
 {
   "name": "@har4s/use-local-storage",
-  "version": "0.0.4",
+  "version": "0.1.4",
   "main": "lib/index.js",
   "typings": "lib/index",
   "license": "MIT",
