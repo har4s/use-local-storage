@@ -1,18 +1,36 @@
 import { Dispatch, SetStateAction, useState } from "react";
 
+export interface UseLocalStorageOptions {
+  persistent?: boolean;
+}
+
 export type UseLocalStorage<T> = [T, Dispatch<SetStateAction<T>>];
 export default function useLocalStorage<T>(
   key: string,
-  initialValue: SetStateAction<T>
+  initialValue: SetStateAction<T>,
+  options?: UseLocalStorageOptions
 ): UseLocalStorage<T> {
+  let isPersistent: boolean = true;
+
+  if (!!options && typeof options.persistent !== "undefined") {
+    isPersistent = options.persistent;
+  }
+
+  let storage: Storage;
+  if (isPersistent) {
+    storage = localStorage;
+  } else {
+    storage = sessionStorage;
+  }
+
   const saveToLocalStorage = (valueToStore: T) => {
     try {
       if (typeof valueToStore === "string") {
-        localStorage.setItem(key, valueToStore);
+        storage.setItem(key, valueToStore);
       } else if (typeof valueToStore === "undefined") {
-        localStorage.setItem(key, "");
+        storage.setItem(key, "");
       } else {
-        localStorage.setItem(key, JSON.stringify(valueToStore));
+        storage.setItem(key, JSON.stringify(valueToStore));
       }
     } catch {
       console.warn(`Could not save ${key} to localStorage`);
