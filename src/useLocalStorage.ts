@@ -50,7 +50,7 @@ export default function useLocalStorage<T>(
 
   const [storedValue, setStoredValue] = useState<T>(() => {
     let result: T;
-    const item = localStorage.getItem(key);
+    const item = storage.getItem(key);
 
     if (item === null) {
       return getValue(null, initialValue);
