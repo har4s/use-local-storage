@@ -102,4 +102,14 @@ describe("useLocalStorage", () => {
     expect(result.current[0]).toStrictEqual(newValue);
     expect(localStorage.getItem(key)).toBe(JSON.stringify(newValue));
   });
+
+  it("return initial value if on ssr", () => {
+    sessionStorage = undefined;
+    localStorage = undefined;
+    window = undefined;
+
+    const { result } = renderHook(() => useLocalStorage(key, savedValue));
+
+    expect(result.current[0]).toBe(savedValue);
+  });
 });

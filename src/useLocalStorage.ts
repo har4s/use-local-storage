@@ -78,5 +78,9 @@ export default function useLocalStorage<T>(
     saveToLocalStorage(valueToStore);
   };
 
+  if (typeof window === "undefined") {
+    return [storedValue, () => {}];
+  }
+
   return [storedValue, setValue];
 }
