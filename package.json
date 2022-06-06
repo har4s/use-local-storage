@@ -20,7 +20,8 @@
   },
   "scripts": {
     "prepare": "tsc",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "test": "TZ=UTC jest"
   },
   "engines": {
     "node": ">=8",
@@ -30,7 +31,16 @@
     "react": "^17.0.2"
   },
   "devDependencies": {
-    "@types/react": "^17.0.33",
+    "@testing-library/react-hooks": "^8.0.0",
+    "@types/jest": "^28.1.1",
+    "@types/react": "^18.0.12",
+    "@types/react-dom": "^18.0.5",
+    "jest": "^28.1.0",
+    "jest-environment-jsdom": "^28.1.0",
+    "jest-localstorage-mock": "^2.4.21",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "ts-jest": "^28.0.4",
     "typescript": "^4.4.4"
   },
   "files": [
