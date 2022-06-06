@@ -10,20 +10,21 @@ export default function useLocalStorage<T>(
   initialValue: SetStateAction<T>,
   options?: UseLocalStorageOptions
 ): UseLocalStorage<T> {
-  let isPersistent: boolean = true;
+  const SSR = typeof window === "undefined";
+  let isPersistent = true;
 
   if (!!options && typeof options.persistent !== "undefined") {
     isPersistent = options.persistent;
   }
 
   let storage: Storage;
-  if (isPersistent) {
-    storage = localStorage;
-  } else {
+  if (!SSR && !isPersistent) {
     storage = sessionStorage;
+  } else if (!SSR) {
+    storage = localStorage;
   }
 
-  const saveToLocalStorage = (valueToStore: T) => {
+  const saveToStorage = (valueToStore: T) => {
     try {
       if (typeof valueToStore === "string") {
         storage.setItem(key, valueToStore);
@@ -40,7 +41,7 @@ export default function useLocalStorage<T>(
   function getValue(value: T, initOrCb: SetStateAction<T>): T {
     if (initOrCb instanceof Function) {
       const newValue = initOrCb(value);
-      saveToLocalStorage(newValue);
+      saveToStorage(newValue);
       return newValue;
     }
 
@@ -75,10 +76,10 @@ export default function useLocalStorage<T>(
   const setValue = (value: SetStateAction<T>) => {
     const valueToStore = value instanceof Function ? value(storedValue) : value;
     setStoredValue(valueToStore);
-    saveToLocalStorage(valueToStore);
+    saveToStorage(valueToStore);
   };
 
-  if (typeof window === "undefined") {
+  if (SSR) {
     return [storedValue, () => {}];
   }
 
