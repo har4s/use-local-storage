@@ -26,7 +26,8 @@ export default function useLocalStorage<T>(
 
   const saveToStorage = (valueToStore: T) => {
     try {
-      if (typeof valueToStore === "string") {
+      if (SSR) {
+      } else if (typeof valueToStore === "string") {
         storage.setItem(key, valueToStore);
       } else if (typeof valueToStore === "undefined") {
         storage.setItem(key, "");
@@ -49,6 +50,7 @@ export default function useLocalStorage<T>(
   }
 
   const [storedValue, setStoredValue] = useState<T>(() => {
+    if (SSR) return getValue(null, initialValue);
     let result: T;
     const item = storage.getItem(key);
 
@@ -78,10 +80,6 @@ export default function useLocalStorage<T>(
     setStoredValue(valueToStore);
     saveToStorage(valueToStore);
   };
-
-  if (SSR) {
-    return [storedValue, () => {}];
-  }
 
   return [storedValue, setValue];
 }
