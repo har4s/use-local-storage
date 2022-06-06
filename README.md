@@ -24,6 +24,7 @@ export const Example = () => {
   // ...
   const [something, setSomething] = useLocalStorage('key', 'fallback');
   // or const [something, setSomething] = useSessionStorage('key', {...});
+  // or const [something, setSomething] = useLocalStorage('key', 'fallback',{ persistent:false });
   // ...
 };
 ```
