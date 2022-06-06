@@ -10,7 +10,7 @@ export interface UseSessionStorageOptions
 export default function useSessionStorage<T>(
   key: string,
   initialValue: SetStateAction<T>,
-  options?: UseLocalStorageOptions
+  options?: UseSessionStorageOptions
 ): UseLocalStorage<T> {
   return useLocalStorage(key, initialValue, { ...options, persistent: false });
 }

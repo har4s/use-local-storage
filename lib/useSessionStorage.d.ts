@@ -1,3 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
-export declare type UseSessionStorage<T> = [T, Dispatch<SetStateAction<T>>];
-export default function useSessionStorage<T>(key: string, initialValue: SetStateAction<T>): UseSessionStorage<T>;
+import { SetStateAction } from "react";
+import { UseLocalStorage, UseLocalStorageOptions } from "./useLocalStorage";
+export interface UseSessionStorageOptions extends Omit<UseLocalStorageOptions, "persistent"> {
+}
+export default function useSessionStorage<T>(key: string, initialValue: SetStateAction<T>, options?: UseLocalStorageOptions): UseLocalStorage<T>;
